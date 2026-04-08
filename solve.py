@@ -138,7 +138,7 @@ def eval_seq(seq):
             torch.load(f"{PIECES_DIR}/piece_{in_p}.pth",  map_location="cpu"))
         model.blocks[i].out.load_state_dict(
             torch.load(f"{PIECES_DIR}/piece_{out_p}.pth", map_location="cpu"))
-    model.final.layer.load_state_dict(
+    model.final.load_state_dict(
         torch.load(f"{PIECES_DIR}/piece_{final_layer_piece}.pth", map_location="cpu"))
     model.eval()
     with torch.no_grad():
@@ -200,7 +200,7 @@ for i, (in_p, out_p) in enumerate(seq):
         torch.load(f"{PIECES_DIR}/piece_{in_p}.pth",  map_location="cpu"))
     model.blocks[i].out.load_state_dict(
         torch.load(f"{PIECES_DIR}/piece_{out_p}.pth", map_location="cpu"))
-model.final.layer.load_state_dict(
+model.final.load_state_dict(
     torch.load(f"{PIECES_DIR}/piece_{final_layer_piece}.pth", map_location="cpu"))
 torch.save(model.state_dict(), "solved_model.pth")
 
